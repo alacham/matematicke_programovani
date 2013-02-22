@@ -39,3 +39,23 @@ def ulam_location(ordnum):
         y -= 1
         x += -(sr+1)+(diff - (3*sr + 2))
     return (x,y)
+
+def show_ulam(edge):
+    odd = edge % 2
+    even = 1-odd
+    prvocisla = erathosten_sieve(1 + edge ** 2)
+    im = Image.new("RGB", (edge, edge))
+    
+    # mark middle point (1) by red color
+    im.putpixel(((edge / 2)-even, (edge / 2)-even), (255, 0, 0))
+    
+    for i in range(1, len(prvocisla)):
+        if prvocisla[i] == 1:
+            x, y = ulam_location(i)
+            #print i,':',x,y
+            x += (edge / 2)-even
+            y += (edge / 2)-even
+            #print x,y,edge - 1 - y
+            # edge-1-y because y==0 is in UPPER left corner
+            im.putpixel((x, edge - 1 - y), (255, 255, 255))
+    im.show()
