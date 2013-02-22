@@ -4,7 +4,7 @@ def erathosten_sieve(maxnum):
     sieve = [ 1 for i in range(maxnum)]
     sieve[0] = 0
     sieve[1] = 0
-    for i in range(2, int(math.sqrt(maxnum))):
+    for i in range(2, int(maxnum**0.5)):
         j = 2 * i
         while j < maxnum:
             sieve[j] = 0
