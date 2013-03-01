@@ -59,3 +59,25 @@ def show_ulam(edge):
             # edge-1-y because y==0 is in UPPER left corner
             im.putpixel((x, edge - 1 - y), (255, 255, 255))
     im.show()
+
+def quarter_ulam_location(ordnum):
+    ''' tohle jsem programoval v prvni serii KSI :D
+        Podobne ulamove spirale ale, zacina se v rohu
+    '''
+    isqrt = int(ordnum ** 0.5)
+    differ = ordnum - isqrt ** 2
+    a = isqrt
+    b = 0
+    if  differ > a:
+        b = a
+        a = 2 * a - differ
+    else:
+        b = differ
+    if isqrt % 2 == 0:
+        return (b, a)
+    else:
+        return (a, b)
+
+
+
+

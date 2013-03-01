@@ -23,6 +23,7 @@ def nsd_minus(a, b, *args):
 
 def euclid_show(size, mode):
     im = Image.new("RGB", (size, size+10))
+    pix = im.load()
     
     # 0.9 because in sRGB spectrum I prefer (red to violet) to (red to red)
     size_step = 0.9/(size-1)
@@ -31,7 +32,7 @@ def euclid_show(size, mode):
             rgb_colors = colorsys.hsv_to_rgb(*hsv_colors)
             INT_RGB = float2int_colors(rgb_colors)
             for y in range(size+2,size+10):
-                im.putpixel((x,y), INT_RGB)        
+                pix[x,y] = INT_RGB
     
     bigarr = []
     max_mod = 0
@@ -67,7 +68,7 @@ def euclid_show(size, mode):
                 v = (7.0/9) * bigarr[y][x][0] * minus_step + 0.3
                 hsv_colors = (h, 1, v) 
                 rgb_colors = colorsys.hsv_to_rgb(*hsv_colors)
-            im.putpixel((x, size - y - 1), float2int_colors(rgb_colors))
+            pix[x, size - y - 1] = float2int_colors(rgb_colors)
     im.show()
 
 
