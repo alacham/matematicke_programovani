@@ -36,3 +36,9 @@ nosetests.xml
 
 #export dir
 results/
+
+#output files
+*.svg
+*.png
+*.jpg
+*.bmp

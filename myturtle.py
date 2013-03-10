@@ -14,7 +14,7 @@ class Turtle:
         self.y = 0
         self.pen = True
         self.position_stack = []
-        self.angle = 90
+        self.angle = 0
         self.offset = 500
         self.dwg = svgwrite.Drawing(outfilename)#, profile='tiny')
         #self.dwg.add(self.dwg.line((0, 0), (1, 1), stroke=svgwrite.rgb(10, 10, 16, '%')))
@@ -37,7 +37,13 @@ class Turtle:
             self.dwg.add(self.dwg.line((self.x + self.offset, self.y + self.offset), (x + self.offset, (y + self.offset)), stroke=svgwrite.rgb(10, 10, 16, '%')))
         self.x = x
         self.y = y
-        print x, y
+        #print x, y
+    
+    def pen_down(self):
+        self.pen = True
+    
+    def pen_up(self):
+        self.pen = False
     
     def backward(self, howmuch):
         self.forward(-howmuch)
