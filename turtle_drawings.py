@@ -87,5 +87,7 @@ elif DRAWIMAGE == 5:
 elif DRAWIMAGE == 6:
     a.offset = 1
     a.lsys_interpret(hilbert_recipe, hilbert_lsys_translation)
+elif DRAWIMAGE == 7:
+    pass
 
 a.draw()
