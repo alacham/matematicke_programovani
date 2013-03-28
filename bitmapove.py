@@ -1,8 +1,5 @@
-import Image, ImageChops
-import svgwrite
+import Image
 import math
-import time
-from sympy.geometry import Line, Segment, intersection
 from usecky import Usecka, prunik_usecek
 
 def kruh_impl():
@@ -26,10 +23,10 @@ def kruznice_impl():
 def kruznice_param():
     im = Image.new("RGB", (256, 256))
     
-    iter = 0
+    iteri = 0
     while iter <= 2 * math.pi:
-        i = int(round(127 * math.cos(iter)))
-        j = int(round(127 * math.sin(iter)))
+        i = int(round(127 * math.cos(iteri)))
+        j = int(round(127 * math.sin(iteri)))
         print i, j
         im.putpixel((i + 128, j + 128), (i + 128, 0, j + 128))
         iter += 0.001
@@ -38,7 +35,7 @@ def kruznice_param():
 def spirala_param():
     im = Image.new("RGB", (512, 512))
     
-    iter = 0
+    iteri = 0
     r = 0
     while iter <= 6 * math.pi:
         i = int(round(r * math.cos(iter)))
