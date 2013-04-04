@@ -78,12 +78,12 @@ def chaos_game(vertexes, distancemult, iters=100000, size=None, name='chaosgame.
     im.save('new' + name)
         
 
-
-points = ngram_vertexes(3, 256)
-maxx = reduce(lambda prev, p: max(p[0], prev), points, 0) + 1
-maxy = reduce(lambda prev, p: max(p[1], prev), points, 0) + 1
-
-print points, maxx, maxy
-
-chaos_game(points, 1.0 / 2, size=(int(round(maxx)), int(round(maxy))))
-
+if __name__ == '__main__':
+    points = ngram_vertexes(3, 256)
+    maxx = reduce(lambda prev, p: max(p[0], prev), points, 0) + 1
+    maxy = reduce(lambda prev, p: max(p[1], prev), points, 0) + 1
+    
+    print points, maxx, maxy
+    
+    chaos_game(points, 1.0 / 2, size=(int(round(maxx)), int(round(maxy))))
+    
