@@ -2,7 +2,9 @@ import Image
 from chaos_game import ir
 
 
-
+# newtonova metoda z^3 v complexnich cislech
+#  zkoumani pevnych bodu (vykreslovani jake start.
+# parametry vykresluji co
 def newton_z3(starting,diff=0.0001):
     
     def i_konv_diff(num, diff):
