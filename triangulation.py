@@ -4,7 +4,7 @@ import svgwrite
 from math import degrees, radians, cos, sin
 import random
 
-class Line:    
+class Line:
     def __init__(self, p1, p2):
         self.x1, self.y1 = p1
         self.x2, self.y2 = p2
