@@ -22,13 +22,15 @@ class Die:
 def bayes_dice(die_chance, rolled):
     chance_on_die = {}
     for die in die_chance:
-#        print die
+        
         chance_on_die[die] = reduce(lambda prod, r: prod * die.c(r), rolled, 1)
+        
     
     chance_of_die = {}
     alloccurs = float(sum(die_chance.values()))
     for die, occurs in die_chance.iteritems():
         chance_of_die[die] = occurs / alloccurs
+        
     
     mults_on_of = { die : chance_on_die[die] * chance_of_die[die] for die in die_chance}
     
@@ -37,19 +39,33 @@ def bayes_dice(die_chance, rolled):
 
 if __name__ == '__main__':
     
-    rolled = [1, 3, 4, 5, 1, 4, 6, 5, 1, 5, 4, 5]
-    d1 = Die(range(1, 7))
-    d2 = Die([1, 2, 3, 4, 5, 6, 6])
-    d3 = Die([1, 5, 3, 4, 5, 6])
-    d4 = Die([1, 5, 3, 4, 5, 5])
+#    rolled = [1, 3, 4, 5, 1, 4, 6, 5, 1, 5, 4, 5]
+#    d1 = Die(range(1, 7))
+#    d2 = Die([1, 2, 3, 4, 5, 6, 6])
+#    d3 = Die([1, 5, 3, 4, 5, 6])
+#    d4 = Die([1, 5, 3, 4, 5, 5])
+#    
+#    d_chcs = {d1:1,
+#              d2:1,
+#              d3:1,
+#              d4:1}
+#    
+#    by_die = bayes_dice(d_chcs, rolled)
+#    for die,chc in by_die.iteritems():
+#        print die, round(chc,3)
     
-    d_chcs = {d1:1,
-              d2:1,
-              d3:1,
-              d4:1}
+    BLACK = 2
+    WHITE = 1
+    rolled = [WHITE]*3 + [BLACK]*7
+    dies = []
+    for i in range(0,7):
+        dies.append(Die(i*[BLACK]+(6-i)*[WHITE]))
+    dchcs = {}
+    for i in dies:
+        dchcs[i] = 1
     
-    by_die = bayes_dice(d_chcs, rolled)
+    
+    by_die = bayes_dice(dchcs, rolled)
+    print '------------'
     for die,chc in by_die.iteritems():
         print die, round(chc,3)
-    
-    

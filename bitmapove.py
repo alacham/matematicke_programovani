@@ -37,12 +37,12 @@ def spirala_param():
     
     iteri = 0
     r = 0
-    while iter <= 6 * math.pi:
-        i = int(round(r * math.cos(iter)))
-        j = int(round(r * math.sin(iter)))
+    while iteri <= 6 * math.pi:
+        i = int(round(r * math.cos(iteri)))
+        j = int(round(r * math.sin(iteri)))
         print i, j
         im.putpixel((i + 128, j + 128), (i + 128, 0, j + 128))
-        iter += 0.001
+        iteri += 0.001
         r += math.pi * 0.001 * 2
     im.show()
     
@@ -145,21 +145,55 @@ def konvoluce(inname, konvmaticeperrgb):
     imo.save('new' + inname)
 
 #elipsa_impl()
-
-edgedetect = [[[0, 1, 0], [1, -4, 1], [0, 1, 0]]]
-edgeenhance = [[[0, -1, 0], [-1, 2, 0], [0, 0, 0]]]
-
-zvyraznimodrou = [[[0, 0, 0], [0, 1, 0], [0, 0, 0]], [[0, 0, 0], [0, 1, 0], [0, 0, 0]], [[0, 0, 0], [0, 10, 0], [0, 0, 0]]]
-
-#konvoluce('skryvacka2.png', edgeenhance)
-
-#konvoluce('skryvacka1.png', zvyraznimodrou)
-
-nuhelbody = [(0, 0), (50,50), (100, 290), (200, 200), (320, 300), (250, 150), (300, 0), (200, 100)]
-
-
-
-mnohouhelnik(nuhelbody)
+#spirala_param()
+#
+#edgedetect = [[[0, 1, 0], [1, -4, 1], [0, 1, 0]]]
+#edgeenhance = [[[0, -1, 0], [-1, 2, 0], [0, 0, 0]]]
+#
+#zvyraznimodrou = [[[0, 0, 0], [0, 1, 0], [0, 0, 0]], [[0, 0, 0], [0, 1, 0], [0, 0, 0]], [[0, 0, 0], [0, 10, 0], [0, 0, 0]]]
+#
+##konvoluce('skryvacka2.png', edgeenhance)
+#
+##konvoluce('skryvacka1.png', zvyraznimodrou)
+#
+#nuhelbody = [(0, 0), (50,50), (100, 290), (200, 200), (320, 300), (250, 150), (300, 0), (200, 100)]
 
 
+#mnohouhelnik(nuhelbody)
 
+
+def pisemka():
+    im = Image.new("RGB", (512, 512))
+    
+    arr = [0]* 512
+    arra = [ arr[:] for i in range(512)]
+    print len(arra), len(arra[1])
+    
+    for i in range(-256, 256):
+        for j in range(-256, 256):
+            if i ** 2 + j ** 2 + i * j <= 128 ** 2:
+                arra[i+256][j+256] += 1
+                
+    for i in range(-256, 256):
+        for j in range(-256, 256):
+
+            if i ** 2 + j ** 2 + i * j <= 128 ** 2:
+                arra[i+256][ - j+256] += 1
+    
+    for i in range(-128, 128):
+        for j in range(-128, 128):
+            if round((i ** 2 + j ** 2) ** 0.5) <= 128:
+                arra[i+256][j+256] += 1
+    print arra
+    
+    for y in range(len(arra)):
+        for x in range(len(arra[0])):
+            if arra[y][x] == 1 or arra[y][x] == 3:
+                im.putpixel((x,y),(0,255,0))
+    
+    im.show()
+
+
+if __name__ == '__main__':
+    pisemka()
+    trojuhelnik(30)

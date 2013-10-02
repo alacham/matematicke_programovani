@@ -243,8 +243,8 @@ def triangle_maze(size):
     for w in walls_rest:
         wall = walls_d[w]
         #wall.switch_xy()
-        wall.apply_transform(transformace.scaleMatrix(10, 10))
-        wall.apply_transform(transformace.shearMatrix(-0.5))
+        wall.apply_transform(transformace.scaleMatrix(14, 10))
+        wall.apply_transform(transformace.shearMatrix(-0.7))
         wall.to_svg(dwg, 0)
 
     dwg.save()
@@ -252,5 +252,6 @@ def triangle_maze(size):
 
 
 if __name__ == '__main__':
-    #basic_maze(30, 40, 0, 0)
+    init_djikstra()
+    basic_maze(30, 40, 0, 0)
     triangle_maze(40)

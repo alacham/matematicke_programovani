@@ -243,8 +243,54 @@ def general_recur(polyg, howmany, canvas, offset, curtransf, transforms):
         general_recur(polyg, howmany - 1, canvas, offset, tr, transforms)
 
 
+
+def recurse_transformations2(polygon, canvas, n=10, offset=0):
+    if  n == 0 or polygon.lines[0].length() <= 5 :
+        polygon.to_svg(canvas, offset)
+        return
+
+    vertices = polygon.points()
+    pos = vertices[0]
+    
+    polygon.apply_transform(shiftMatrix(10, 10))
+    polygon.apply_transform(scaleMatrix(0.7, 0.7))
+    #print shiftMatrix(*list(pos))
+    polygon.apply_transform(shiftMatrix(*list(pos)))
+    
+    for v in vertices:
+        poly = copy.deepcopy(polygon)
+        poly.apply_transform(shiftMatrix(*multiply_shift(pos, v, 0.5)))
+        
+        recurse_transformations2(poly, canvas, n - 1)
+    
+    return
+
+def ctverce():
+    dwg = svgwrite.Drawing('ctverce.svg')
+#    rm = rotationMatrix(20)
+    sm = scaleMatrix(1.3, 1.3)
+    shiftm = shiftMatrix(0.4, 0.4)
+#    shiftm2 = shiftMatrix(50)
+    
+    am = composeMatrix([sm, shiftm])
+    pol = Polygon([(0, 0), (2, 0), (2, 2), (0, 2)])
+    pol2 = copy.deepcopy(pol)
+    pol2.apply_transform(reflectionMatrix())
+        
+    pol2.to_svg(dwg, 200)
+    for i in range(15):
+        pol.apply_transform(am)
+        
+        pol2 = copy.deepcopy(pol)
+        pol2.apply_transform(reflectionMatrix())
+        
+        pol2.to_svg(dwg, 200)
+    dwg.save()
+
+
 if __name__ == '__main__':
-    fern()
+    ctverce()
+#    fern()
 #    star()
     
     
