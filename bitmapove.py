@@ -1,4 +1,4 @@
-import Image
+from PIL import Image
 import math
 from usecky import Usecka, prunik_usecek
 
@@ -24,12 +24,12 @@ def kruznice_param():
     im = Image.new("RGB", (256, 256))
     
     iteri = 0
-    while iter <= 2 * math.pi:
+    while iteri <= 2 * math.pi:
         i = int(round(127 * math.cos(iteri)))
         j = int(round(127 * math.sin(iteri)))
         print i, j
         im.putpixel((i + 128, j + 128), (i + 128, 0, j + 128))
-        iter += 0.001
+        iteri += 0.001
     im.show()
     
 def spirala_param():

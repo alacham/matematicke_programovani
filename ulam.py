@@ -1,4 +1,4 @@
-import Image
+from PIL import Image
 
 def erathosten_sieve(maxnum):
     sieve = [ 1 for i in range(maxnum)]
@@ -11,6 +11,9 @@ def erathosten_sieve(maxnum):
             j += i
     return sieve
 
+
+# counts location of namuber on spiral by shift from position of closest
+# lower square of odd number (which all lie on diagonal)
 def ulam_location(ordnum):
     sr = int(ordnum ** 0.5)
     if sr % 2 == 0:

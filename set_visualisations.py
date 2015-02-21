@@ -1,4 +1,4 @@
-import Image
+from PIL import Image
 from chaos_game import ir
 
 

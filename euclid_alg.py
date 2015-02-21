@@ -1,4 +1,4 @@
-import Image
+from PIL import Image
 import colorsys
 
 def nsd_mod(a, b, nth):

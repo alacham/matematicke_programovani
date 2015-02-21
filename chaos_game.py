@@ -1,4 +1,4 @@
-import Image
+from PIL import Image
 from math import sin, cos, radians
 import random
 

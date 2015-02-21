@@ -1,4 +1,4 @@
-import Image
+from PIL import Image
 import svgwrite
 
 def red2blue():
@@ -24,4 +24,5 @@ def zadani3_B_c():
         dwg.add(dwg.line((-y + offset, -x + offset), (y + offset, -x + offset), stroke=svgwrite.rgb(10, 10, 16, '%')))
     dwg.save()
 
-zadani3_B_c()
+if __name__ == '__main__':
+    zadani3_B_c()

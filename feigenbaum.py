@@ -1,4 +1,4 @@
-import Image
+from PIL import Image
 
 def feigenbaum(r, nsteps=500, ntrash=100, init=0.5):
     vals = []
